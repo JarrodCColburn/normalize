@@ -1,8 +1,8 @@
 // JCC0032SummaryChart.java
 // Jarrod Colburn
 // Due: 8 Feb 17
-package normalize;
-import normalize.JCC0032SummaryList;
+
+//import normalize.JCC0032SummaryList;
 import java.util.ArrayList;
 public class JCC0032SummaryChart {
     

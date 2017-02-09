@@ -1,7 +1,7 @@
 // JCC0032Normalize.java
 // Jarrod Colburn
 // Due: 8 Feb 17
-package normalize;
+
 import java.io.BufferedWriter;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;

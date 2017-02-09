@@ -1,7 +1,7 @@
 // JCC0032SummaryList.java
 // Jarrod Colburn
 // Due: 8 Feb 17
-package normalize ;
+
 import java.util.ArrayList;
 
 /**

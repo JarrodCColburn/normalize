@@ -1,7 +1,7 @@
 // JCC0032ARFF.java
 // Jarrod Colburn
 // Due: 8 Feb 17
-package normalize;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
