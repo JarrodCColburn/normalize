@@ -24,7 +24,7 @@ public class JCC0032DT {
         JCC0032DTinARFF arff = new JCC0032DTinARFF(cmd.getFileName(), cmd.getClassAttribute());
         
         // initalize a recordset and move data taken in from arff
-        JCC0032RecordSet mainSet = new JCC0032RecordSet();
+        JCC0032DTRecordSet mainSet = new JCC0032DTRecordSet();
         mainSet.attributes = arff.getAttributes();
         mainSet.recordDomain = arff.getRecordDomain();
         mainSet.records = arff.getRecords();        
@@ -32,7 +32,7 @@ public class JCC0032DT {
         mainSet.grouping = arff.getGrouping();
         
         // Copy a subSet of RecordSet to TrainingSet
-        JCC0032RecordSet trainSet = mainSet.returnTraining(cmd.getT());
+        JCC0032DTRecordSet trainSet = mainSet.returnTraining(cmd.getT());
         
         // Grow a tree using training data as root node
         JCC0032DTNode node = new JCC0032DTNode();

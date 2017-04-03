@@ -31,9 +31,9 @@ public class JCC0032DTDecisionTree {
     }
 
     public void growTree(JCC0032DTNode n) {
-        JCC0032RecordSet recordSets = (JCC0032RecordSet) n.getContents();
-        List<JCC0032RecordSet> subRecords = recordSets.makeSplits();
-        for (JCC0032RecordSet r : subRecords) {
+        JCC0032DTRecordSet recordSets = (JCC0032DTRecordSet) n.getContents();
+        List<JCC0032DTRecordSet> subRecords = recordSets.makeSplits();
+        for (JCC0032DTRecordSet r : subRecords) {
             if (r.getSize() < 1) {
                 continue; // node has no records, don't add to tree
             }
@@ -77,14 +77,14 @@ public class JCC0032DTDecisionTree {
     }
 
     private Object returnGroup(List record, List attributes, JCC0032DTNode n) {
-        JCC0032RecordSet r = (JCC0032RecordSet) n.getContents();
+        JCC0032DTRecordSet r = (JCC0032DTRecordSet) n.getContents();
         if (r.getGroup() != null) { // At leaf so return grouping
             return r.getGroup();
         } else {
             int globalMaxRecords = 0;
             JCC0032DTNode largestSubNode = n.getChildren().get(0);
             for (JCC0032DTNode c : n.getChildren()) { // Find matching child
-                JCC0032RecordSet child = (JCC0032RecordSet) c.getContents();
+                JCC0032DTRecordSet child = (JCC0032DTRecordSet) c.getContents();
                 Object attribute = child.getAttribute(); // Get attribute
                 int i = 0;//= Arrays.asList(attributes).indexOf(attribute);
                 for (; i < attributes.size(); i++) {

@@ -46,7 +46,7 @@ public class JCC0032DTinARFF {
                 
         sb.append("@relation").append(s).append(relation).append(br);
         
-        sb.append(br).append(JCC0032StringBuilderHelper.toBuilder("%s", "@attribute", attributes, types));
+        sb.append(br).append(JCC0032DTStringBuilderHelper.toBuilder("%s", "@attribute", attributes, types));
         if(this.classname != null && this.classtype != null){
             sb.append("@attribute").append(s).append(classname).append(s).append(classtype).append(br);
         }
@@ -56,10 +56,10 @@ public class JCC0032DTinARFF {
         
         sb.append(br).append("@data").append(br);
         if(predictions != null){
-            sb.append(JCC0032StringBuilderHelper.toBuilder("% 4d", records, grouping, predictions));
+            sb.append(JCC0032DTStringBuilderHelper.toBuilder("% 4d", records, grouping, predictions));
         }
         else{
-            sb.append(JCC0032StringBuilderHelper.toBuilder("% 4d", records, grouping));
+            sb.append(JCC0032DTStringBuilderHelper.toBuilder("% 4d", records, grouping));
         }
         
         return sb.toString();
