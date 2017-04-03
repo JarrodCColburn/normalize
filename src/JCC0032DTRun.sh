@@ -1,0 +1,10 @@
+javac JCC0032DTStringBuilderHelper.java
+javac JCC0032DTcmdLine.java
+javac JCC0032DTinARFF.java
+javac JCC0032DTRecordSet.java
+javac JCC0032DTEntropyBox.java
+javac JCC0032DTNode.java
+javac JCC0032DTDecisionTree.java
+javac JCC0032DTConfusionMatrix.java
+javac JCC0032DTPrintTable.java
+javac JCC0032DT.java
