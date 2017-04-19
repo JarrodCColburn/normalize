@@ -210,12 +210,12 @@ public class JCC0032DTRecordSet implements Cloneable {
         return this.value;
     }
 
-    public static int decideSplit(List<List> records, List<List> recordDomain, List grouping, List groupDomain) {
-
-        int columns = recordDomain.size();
-        int rows = grouping.size();
-
-        // Initialize class to find entropy
+//    public static int decideSplit(List<List> records, List<List> recordDomain, List grouping, List groupDomain) {
+//
+//        int columns = recordDomain.size();
+//        int rows = grouping.size();
+//
+//        // Initialize class to find entropy
 //        List<JCC0032DTEntropyBox> boxes = new ArrayList<>();
 //        for (int j = 0; j < columns; j++) {
 //            boxes.add(new JCC0032DTEntropyBox(recordDomain.get(j), groupDomain));
@@ -227,58 +227,58 @@ public class JCC0032DTRecordSet implements Cloneable {
 //                boxes.get(j).insert(records.get(i).get(j), grouping.get(i));
 //            }
 //        }
+//
+//        // Return all entropies and compare
+//        double minimumEntropy = 1.0; // 1 is highest possible value
+//        int index = 0;
+//        for (int j = 0; j < columns; j++) {
+//            double localEntropy = boxes.get(j).getEntropy();
+//            if (localEntropy < minimumEntropy) {
+//                index = j;
+//                minimumEntropy = localEntropy;
+//            }
+//        }
+//        return index;
+//    }
 
-        // Return all entropies and compare
-        double minimumEntropy = 1.0; // 1 is highest possible value
-        int index = 0;
-        for (int j = 0; j < columns; j++) {
-            double localEntropy = boxes.get(j).getEntropy();
-            if (localEntropy < minimumEntropy) {
-                index = j;
-                minimumEntropy = localEntropy;
-            }
-        }
-        return index;
-    }
-
-    public List<JCC0032DTRecordSet> makeSplits() {
-        return makeSplits(this.getRecords(), this.recordDomain, this.getGrouping(), this.getGroupDomain(), this.attributes);
-    }
-
-    public static List<JCC0032DTRecordSet> makeSplits(List<List> records, List<List> recordDomain, List grouping, List groupDomain, List attributes) {
-        int columns = recordDomain.size();
-        int rows = grouping.size();
-        int split = decideSplit(records, recordDomain, grouping, groupDomain);
-
-        List<JCC0032DTRecordSet> splits = new ArrayList<>();
-
-        Object label = attributes.get(split);
-        List subAttributes = quasiRemove(attributes, split);
-        List childDomain = recordDomain.get(split);
-        List subRecordDomain = quasiRemove(recordDomain, split);
-
-        // Create children
-        for (Object o : childDomain) {
-            JCC0032DTRecordSet r = new JCC0032DTRecordSet();
-            r.setLabel(label, o);
-            r.setAttributes(subAttributes);
-            r.setDomains(subRecordDomain, groupDomain);
-            splits.add(r);
-        }
-
-        // Assign all records to corresponding (sub)RecordSet
-        for (int j = 0; j < rows; j++) {
-            for (JCC0032DTRecordSet r : splits) {
-                List record = records.get(j);
-                if (r.getValue() == record.get(split)) {
-//                    record.remove(split);
-                    r.addRecord(quasiRemove(record, split), grouping.get(j));
-                    break;
-                }
-            }
-        }
-        return splits;
-    }
+//    public List<JCC0032DTRecordSet> makeSplits() {
+//        return makeSplits(this.getRecords(), this.recordDomain, this.getGrouping(), this.getGroupDomain(), this.attributes);
+//    }
+//
+//    public static List<JCC0032DTRecordSet> makeSplits(List<List> records, List<List> recordDomain, List grouping, List groupDomain, List attributes) {
+//        int columns = recordDomain.size();
+//        int rows = grouping.size();
+//        int split = decideSplit(records, recordDomain, grouping, groupDomain);
+//
+//        List<JCC0032DTRecordSet> splits = new ArrayList<>();
+//
+//        Object label = attributes.get(split);
+//        List subAttributes = quasiRemove(attributes, split);
+//        List childDomain = recordDomain.get(split);
+//        List subRecordDomain = quasiRemove(recordDomain, split);
+//
+//        // Create children
+//        for (Object o : childDomain) {
+//            JCC0032DTRecordSet r = new JCC0032DTRecordSet();
+//            r.setLabel(label, o);
+//            r.setAttributes(subAttributes);
+//            r.setDomains(subRecordDomain, groupDomain);
+//            splits.add(r);
+//        }
+//
+//        // Assign all records to corresponding (sub)RecordSet
+//        for (int j = 0; j < rows; j++) {
+//            for (JCC0032DTRecordSet r : splits) {
+//                List record = records.get(j);
+//                if (r.getValue() == record.get(split)) {
+////                    record.remove(split);
+//                    r.addRecord(quasiRemove(record, split), grouping.get(j));
+//                    break;
+//                }
+//            }
+//        }
+//        return splits;
+//    }
 
     public int getSize() {
         return this.getGrouping().size();
