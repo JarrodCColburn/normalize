@@ -216,17 +216,17 @@ public class JCC0032DTRecordSet implements Cloneable {
         int rows = grouping.size();
 
         // Initialize class to find entropy
-        List<JCC0032DTEntropyBox> boxes = new ArrayList<>();
-        for (int j = 0; j < columns; j++) {
-            boxes.add(new JCC0032DTEntropyBox(recordDomain.get(j), groupDomain));
-        }
-
-        // Add data 
-        for (int i = 0; i < rows; i++) {
-            for (int j = 0; j < columns; j++) {
-                boxes.get(j).insert(records.get(i).get(j), grouping.get(i));
-            }
-        }
+//        List<JCC0032DTEntropyBox> boxes = new ArrayList<>();
+//        for (int j = 0; j < columns; j++) {
+//            boxes.add(new JCC0032DTEntropyBox(recordDomain.get(j), groupDomain));
+//        }
+//
+//        // Add data 
+//        for (int i = 0; i < rows; i++) {
+//            for (int j = 0; j < columns; j++) {
+//                boxes.get(j).insert(records.get(i).get(j), grouping.get(i));
+//            }
+//        }
 
         // Return all entropies and compare
         double minimumEntropy = 1.0; // 1 is highest possible value
