@@ -1,35 +1,39 @@
 // JCC0032DTDecisionTree.java
 // Jarrod Colburn
 // Due: 3 Apr 17
+
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-/**
- *
- * @author jarrodcolburn
- */
 public class JCC0032DTDecisionTree {
 
     JCC0032DTNode root;
 
     JCC0032DTDecisionTree() {
-
     }
 
+    /**
+     * Sets root node
+     *
+     * @param n
+     */
     public void setRoot(JCC0032DTNode n) {
         this.root = n;
     }
 
+    /**
+     * Begins growing of tree beginning at the root
+     */
     public void growTree() {
         growTree(this.root);
     }
 
+    /**
+     * Recursive growing of tree
+     *
+     * @param n
+     */
     public void growTree(JCC0032DTNode n) {
         JCC0032DTRecordSet recordSets = (JCC0032DTRecordSet) n.getContents();
         List<JCC0032DTRecordSet> subRecords = recordSets.makeSplits();
@@ -57,6 +61,13 @@ public class JCC0032DTDecisionTree {
         return str.toString().trim();
     }
 
+    /**
+     * Recursive method used to print nodes by depth
+     *
+     * @param n
+     * @param depth
+     * @param str
+     */
     private void printTree(JCC0032DTNode n, int depth, StringBuffer str) {
         if (n.toString() == null || n.toString() == "") {
         } else {
@@ -72,6 +83,13 @@ public class JCC0032DTDecisionTree {
         }
     }
 
+    /**
+     * Using the tree, attempts to predict correct grouping
+     * 
+     * @param record columns of data
+     * @param attributes attributes those columns track to
+     * @return
+     */
     public Object returnGroup(List record, List attributes) {
         return returnGroup(record, attributes, this.root);
     }

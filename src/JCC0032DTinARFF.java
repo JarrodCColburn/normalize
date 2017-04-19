@@ -11,6 +11,11 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+/**
+ * Used to take in ARFF data and transform into usable data.
+ * Parse ARFF file, adding data to respective area.
+ * @author jarrodcolburn
+ */
 public class JCC0032DTinARFF {
 
     private Scanner s;
@@ -27,7 +32,7 @@ public class JCC0032DTinARFF {
 
     private ArrayList<String> attributes ;
     private List<List> recordDomain;
-    private ArrayList<String> types; // Same as type but string
+    private ArrayList<String> types; 
     
     // Used for exercise C
     private String predictName;
@@ -56,10 +61,10 @@ public class JCC0032DTinARFF {
         
         sb.append(br).append("@data").append(br);
         if(predictions != null){
-            sb.append(JCC0032DTStringBuilderHelper.toBuilder("% 4d", records, grouping, predictions));
+            sb.append(JCC0032DTStringBuilderHelper.toBuilder("% 3d", records, grouping, predictions));
         }
         else{
-            sb.append(JCC0032DTStringBuilderHelper.toBuilder("% 4d", records, grouping));
+            sb.append(JCC0032DTStringBuilderHelper.toBuilder("% 3d", records, grouping));
         }
         
         return sb.toString();

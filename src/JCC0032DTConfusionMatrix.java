@@ -2,30 +2,19 @@
 // Jarrod Colburn
 // Due: 3 Apr 17
 import java.util.ArrayList;
-import java.util.Arrays;
+//import java.util.Arrays;
 import java.util.List;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-/**
- *
- * @author jarrodcolburn
- */
+
 public class JCC0032DTConfusionMatrix {
 
-    private JCC0032DTDecisionTree t;
+//    private JCC0032DTDecisionTree t; // Use tree to build a Confusion Matrix
 
-    private List domain;
-    private int[][] confusionMatrix;
+    private List domain;  // This will be used as both x-axis and y-axis
+    private int[][] confusionMatrix; // Diagonal axis going down from left to right indicates correct predictions
 
-    private int correct;
-    private int incorrect;
-
-    private StringBuilder str;
-    private int elements;
+    private int correct;  // Count of correct items
+    private int incorrect; // Count of incorrect items
     
     private List incorrects; // Used fo analysis to determine why misclassified
    
@@ -39,14 +28,10 @@ public class JCC0032DTConfusionMatrix {
         return this.confusionMatrix;
     }
 
-    public void setTree(JCC0032DTDecisionTree t){
-        this.t = t;
-        
-    }
-    
-    private void setElemets() {
-        this.elements = domain.size();
-    }
+//    public void setTree(JCC0032DTDecisionTree t){
+//        this.t = t;
+//        
+//    }
     
     @Override
     public String toString() {
@@ -60,19 +45,19 @@ public class JCC0032DTConfusionMatrix {
         }
         JCC0032DTPrintTable pt = new JCC0032DTPrintTable();
         pt.setData("Predict", domain, "Actual", domain, l);
-        return pt.toString() + "\n" + "Percentage:" + getPercentage();
+        return pt.toString() + "\n" + "The accuracy is: " + getPercentage() + "\n";
     }
 
-    public List returnPredicts(List<List> records, List attributes, List grouping) {
-        List dt_class = new ArrayList<>();
-        for (int j = 0; j < records.size(); j++) {
-            Object actual = grouping.get(j);
-            Object predict = t.returnGroup(records.get(j), attributes);           
-            this.insert(predict, actual, records.get(j));
-            dt_class.add(predict);
-        }
-        return dt_class;
-    }
+//    public List returnPredicts(List<List> records, List attributes, List grouping) {
+//        List dt_class = new ArrayList<>();
+//        for (int j = 0; j < records.size(); j++) {
+//            Object actual = grouping.get(j);
+//            Object predict = t.returnGroup(records.get(j), attributes);           
+//            this.insert(predict, actual, records.get(j));
+//            dt_class.add(predict);
+//        }
+//        return dt_class;
+//    }
 
     public void setDomain(List domain) {
         this.domain = domain;
@@ -88,7 +73,7 @@ public class JCC0032DTConfusionMatrix {
         this.confusionMatrix = new int[this.domain.size()][this.domain.size()];
     }
 
-    private void insert(Object predict, Object actual, List record) {
+    public void insert(Object predict, Object actual, List record) {
         // Update correct vs incorrect totals
         if (predict.equals(actual)) {
             correct++;
@@ -133,4 +118,5 @@ public class JCC0032DTConfusionMatrix {
     public double getPercentage() {
         return (double) (1.0 * this.correct) / (1.0*  (this.correct + this.incorrect));
     }
+
 }

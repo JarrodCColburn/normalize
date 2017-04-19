@@ -4,21 +4,21 @@
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-
+/**
+ * Parse cmd line arguments
+ * @author jarrodcolburn
+ */
 public class JCC0032DTcmdLine {
 
     private String classAttribute ="";
     private String fileName ="";
     private double T;
-//    private String filePath;
+    private int K;
 
     public JCC0032DTcmdLine(String[] args) {      
         for (int i = 0; i < args.length; i++) {
             if (args[i].trim().equals("-i".trim())) {             
                 i++;
-//                Path pIn;
-//                pIn = Paths.get(args[i]);
-//                this.fileName = pIn.toString();
                 this.fileName = Paths.get(args[i]).toString();
                 continue;
             }
@@ -32,6 +32,11 @@ public class JCC0032DTcmdLine {
                 this.classAttribute = args[i];
                 continue;
             }
+            if (args[i].trim().equals("-K".trim())) {
+                i++;
+                this.K = Integer.parseInt(args[i]);
+                continue;
+            }            
         }
     }
 
@@ -54,6 +59,13 @@ public class JCC0032DTcmdLine {
      */
     public double getT() {
         return this.T;
+    }
+
+    /**
+     * @return the K
+     */
+    public int getK() {
+        return this.K;
     }
 
 }

@@ -6,7 +6,8 @@ import java.util.List;
 import java.util.Set;
 
 /**
- *
+ * Used to calculate entropy.
+ * 
  * @author jarrodcolburn
  */
 public class JCC0032DTEntropyBox {
@@ -17,7 +18,12 @@ public class JCC0032DTEntropyBox {
 
     public JCC0032DTEntropyBox() {
     }
-
+    
+    /** 
+     * 
+     * @param attributes
+     * @param classifier 
+     */
     public JCC0032DTEntropyBox(List attributes, List classifier) {
         this.attributes = attributes;
         this.classifier = classifier;

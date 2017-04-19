@@ -132,7 +132,7 @@ public class JCC0032DTPrintTable {
     private String rows(String one, String two, String three) {
         StringBuilder sb = new StringBuilder();
         sb.append(rows(one, two));
-        int width = 1;
+        int width = 0;
         for(int x: xLs){
             width += x + lPad;
         }
@@ -188,6 +188,7 @@ public class JCC0032DTPrintTable {
                 int j = 0;
                 for (Object e : r) {
                     this.xLs[j] = Integer.max(this.xLs[j], e.toString().length());
+                    j++;
                 }
             }
 
